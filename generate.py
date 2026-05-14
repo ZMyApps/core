@@ -1,3 +1,5 @@
+#!/usr/bin/env -S uv run
+
 from shared import aNewerThanB, create_github_client
 from shared.altsource import AltSourceApp, AltSourceRepo
 from shared.config import GithubRepo, config, get_app_config
