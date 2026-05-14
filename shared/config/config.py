@@ -10,9 +10,9 @@ from .model import (
 config = Config(
     local_username="gx8z",
     this_repo=GithubRepo("ZMyApps/core"),
+    files_repo=GithubRepo("ZMyApps/files"),
     build_archive_repo=GithubRepo("ZMyApps/build-archive"),
     ipa_archive_repo=GithubRepo("ZMyApps/ipa-archive"),
-    tweak_archive_repo=GithubRepo("ZMyApps/tweak-archive"),
     apps=[
         App(
             name="Apollo",
