@@ -28,6 +28,7 @@ class GithubRepo(BaseModel):
 
 
 class Config(ConfigBase):
+    local_username: str
     this_repo: GithubRepo
     build_archive_repo: GithubRepo
     ipa_archive_repo: GithubRepo

@@ -8,6 +8,7 @@ from .model import (
 )
 
 config = Config(
+    local_username="gx8z",
     this_repo=GithubRepo("ZMyApps/core"),
     build_archive_repo=GithubRepo("ZMyApps/build-archive"),
     ipa_archive_repo=GithubRepo("ZMyApps/ipa-archive"),
