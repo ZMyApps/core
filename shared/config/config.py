@@ -1,10 +1,17 @@
-from .model import App, Config, CydiaRepoDebFile, GithubReleasesDebFile, Tweak
+from .model import (
+    App,
+    Config,
+    CydiaRepoDebFile,
+    GithubReleasesDebFile,
+    GithubRepo,
+    Tweak,
+)
 
 config = Config(
-    this_repo="ZMyApps/core",
-    build_archive_repo="ZMyApps/build-archive",
-    ipa_archive_repo="ZMyApps/ipa-archive",
-    tweak_archive_repo="ZMyApps/tweak-archive",
+    this_repo=GithubRepo("ZMyApps/core"),
+    build_archive_repo=GithubRepo("ZMyApps/build-archive"),
+    ipa_archive_repo=GithubRepo("ZMyApps/ipa-archive"),
+    tweak_archive_repo=GithubRepo("ZMyApps/tweak-archive"),
     apps=[
         App(
             name="Apollo",
@@ -14,7 +21,7 @@ config = Config(
                     name="ApolloICA",
                     deb_files=[
                         GithubReleasesDebFile(
-                            repo="JeffreyCA/Apollo-ImprovedCustomApi",
+                            repo=GithubRepo("JeffreyCA/Apollo-ImprovedCustomApi"),
                             endswith="rootless.deb",
                             use_version=True,
                         )
@@ -30,7 +37,7 @@ config = Config(
                     name="FacebookGlow",
                     deb_files=[
                         GithubReleasesDebFile(
-                            repo="dayanch96/Glow",
+                            repo=GithubRepo("dayanch96/Glow"),
                             endswith="arm64.deb",
                             use_version=True,
                         )
@@ -46,7 +53,7 @@ config = Config(
                     name="InfusePlus",
                     deb_files=[
                         GithubReleasesDebFile(
-                            repo="dayanch96/InfusePlus",
+                            repo=GithubRepo("dayanch96/InfusePlus"),
                             endswith="arm64.deb",
                             use_version=True,
                         )
@@ -62,7 +69,7 @@ config = Config(
                     name="SCInsta",
                     deb_files=[
                         GithubReleasesDebFile(
-                            repo="SoCuul/SCInsta",
+                            repo=GithubRepo("SoCuul/SCInsta"),
                             endswith="rootless.deb",
                             use_version=True,
                         )
@@ -72,7 +79,7 @@ config = Config(
                     name="RyukGram",
                     deb_files=[
                         GithubReleasesDebFile(
-                            repo="faroukbmiled/RyukGram",
+                            repo=GithubRepo("faroukbmiled/RyukGram"),
                             endswith="rootless.deb",
                             use_version=True,
                         )
@@ -90,7 +97,7 @@ config = Config(
                     name="BHTwitter",
                     deb_files=[
                         GithubReleasesDebFile(
-                            repo="BandarHL/BHTwitter",
+                            repo=GithubRepo("BandarHL/BHTwitter"),
                             endswith="arm64.deb",
                             use_version=True,
                         )
@@ -106,7 +113,7 @@ config = Config(
                     name="YouMod",
                     deb_files=[
                         GithubReleasesDebFile(
-                            repo="Tonwalter888/YouMod",
+                            repo=GithubRepo("Tonwalter888/YouMod"),
                             endswith="arm64.deb",
                             use_version=True,
                         ),
@@ -146,7 +153,9 @@ config = Config(
                             architecture="iphoneos-arm64",
                         ),
                         GithubReleasesDebFile(
-                            repo="hbang/Alderis", version="1.2.3", endswith="arm64.deb"
+                            repo=GithubRepo("hbang/Alderis"),
+                            version="1.2.3",
+                            endswith="arm64.deb",
                         ),
                         CydiaRepoDebFile(
                             repo="https://repo.icrazeios.com",
@@ -165,7 +174,7 @@ config = Config(
                     name="YTMusicUltimate",
                     deb_files=[
                         GithubReleasesDebFile(
-                            repo="dayanch96/YTMusicUltimate",
+                            repo=GithubRepo("dayanch96/YTMusicUltimate"),
                             endswith="arm64.deb",
                             use_version=True,
                         )
