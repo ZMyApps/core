@@ -1,27 +1,27 @@
 #!/usr/bin/env -S uv run
 
+import asyncio
 import subprocess
 from time import time
 
 import httpx
 
 from shared import a_newer_than_b, confirm
-from shared.altsource import AltSourceApp
 from shared.config import config
 from shared.repo import decrypted_latest_repo, tweaked_latest_repo
 
 LINE_SEPARATOR = "---------------------------------------------------------------------------------------------------"
 
 
-def lookup_appstore(bundle_identifier: str):
-    response = httpx.get(
+async def lookup_appstore(client: httpx.AsyncClient, bundle_identifier: str):
+    response = await client.get(
         f"https://itunes.apple.com/lookup?bundleId={bundle_identifier}&cacheBusting={time()}"
     )
     data = response.json()
     return (data["results"][0]["version"], data["results"][0]["trackViewUrl"])
 
 
-def main():
+async def main():
     print("Fetching decryptedlatest.json")
     decrypted_latest_repo.fetch()
     print("Fetching tweakedlatest.json")
@@ -39,12 +39,13 @@ def main():
     )
     print(LINE_SEPARATOR)
 
-    outdated_apps: list[tuple[str, str]] = []
-    for app in config.apps:
-        bundle_identifier = app.bundle_identifier
-        appstore_version, appstore_link = lookup_appstore(
-            bundle_identifier=bundle_identifier
+    async with httpx.AsyncClient() as client:
+        appstore_results = await asyncio.gather(
+            *[lookup_appstore(client, app.bundle_identifier) for app in config.apps]
         )
+
+    outdated_apps: list[tuple[str, str]] = []
+    for app, (appstore_version, appstore_link) in zip(config.apps, appstore_results):
         decrypted_app = decrypted_latest_repo.get_app_latest(
             bundle_identifier=app.bundle_identifier
         )
@@ -93,4 +94,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
