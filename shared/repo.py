@@ -51,7 +51,9 @@ class RepoJson:
         filtered = self.filter_apps(name=name, bundle_identifier=bundle_identifier)
         if filtered:
             sorted_filtered = sorted(filtered, key=lambda x: parse_version(x.version))
-            return sorted_filtered[-1]
+            result = sorted_filtered[-1]
+            result.asset_id = result.downloadURL.split("/")[3]
+            return result
 
     def get_app_specific(
         self,
@@ -63,6 +65,7 @@ class RepoJson:
         if filtered:
             for app in filtered:
                 if app.version == version:
+                    app.asset_id = app.downloadURL.split("/")[3]
                     return app
 
 
