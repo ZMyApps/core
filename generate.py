@@ -4,7 +4,6 @@ from shared import aNewerThanB, create_github_client
 from shared.altsource import AltSourceApp, AltSourceRepo
 from shared.config import GithubRepo, config, get_app_config
 
-RELEASE_TAG = "json"
 github_client = create_github_client()
 
 
@@ -21,7 +20,9 @@ def upload_to_data(file_name: str, data: bytes):
     print(f"{file_name} - Uploading")
     # get release
     release = github_client.rest.repos.get_release_by_tag(
-        owner=config.files_repo.owner, repo=config.files_repo.repo, tag=RELEASE_TAG
+        owner=config.files_repo.owner,
+        repo=config.files_repo.repo,
+        tag=config.files_repo_json_tag,
     )
     # delete file if exists
     for asset in release.parsed_data.assets:

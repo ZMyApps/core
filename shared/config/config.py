@@ -11,6 +11,7 @@ config = Config(
     local_username="gx8z",
     this_repo=GithubRepo("ZMyApps/core"),
     files_repo=GithubRepo("ZMyApps/files"),
+    files_repo_json_tag="json",
     build_archive_repo=GithubRepo("ZMyApps/build-archive"),
     ipa_archive_repo=GithubRepo("ZMyApps/ipa-archive"),
     apps=[

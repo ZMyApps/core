@@ -31,6 +31,7 @@ class Config(ConfigBase):
     local_username: str
     this_repo: GithubRepo
     files_repo: GithubRepo
+    files_repo_json_tag: str
     build_archive_repo: GithubRepo
     ipa_archive_repo: GithubRepo
     apps: list[App]
