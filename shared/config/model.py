@@ -45,6 +45,7 @@ class App(ConfigBase):
 
 class Tweak(ConfigBase):
     name: str
+    note: str | None = None
     deb_files: list[
         Annotated[
             CydiaRepoDebFile | GithubReleasesDebFile, Field(discriminator="source")
