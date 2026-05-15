@@ -1,5 +1,9 @@
 from debian.debian_support import Version
 
 
-def aNewerThanB(a: str, b: str):
-    return Version(a.replace("_", "")) > Version(b.replace("_", ""))
+def parse_version(a: str):
+    return Version(a.replace("_", ""))
+
+
+def a_newer_than_b(a: str, b: str):
+    return parse_version(a) > parse_version(b)

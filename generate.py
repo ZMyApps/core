@@ -1,6 +1,6 @@
 #!/usr/bin/env -S uv run
 
-from shared import aNewerThanB, create_github_client
+from shared import a_newer_than_b, create_github_client
 from shared.altsource import AltSourceApp, AltSourceRepo
 from shared.config import GithubRepo, config, get_app_config
 
@@ -74,7 +74,7 @@ def generate_decrypted():
             all_apps.append(current_app)
             if app_name in latest_apps:
                 version_in_latest = latest_apps[app_name].version
-                if aNewerThanB(app_version, version_in_latest):
+                if a_newer_than_b(app_version, version_in_latest):
                     latest_apps[app_name] = current_app
             else:
                 latest_apps[app_name] = current_app
@@ -135,7 +135,7 @@ def generate_tweaked():
             all_apps.append(current_app)
             if app_name in latest_apps:
                 version_in_latest = latest_apps[app_name].version
-                if aNewerThanB(app_version, version_in_latest):
+                if a_newer_than_b(app_version, version_in_latest):
                     latest_apps[app_name] = current_app
             else:
                 latest_apps[app_name] = current_app
