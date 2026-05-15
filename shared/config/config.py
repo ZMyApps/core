@@ -114,6 +114,28 @@ config = Config(
             bundle_identifier="com.google.ios.youtube",
             tweaks=[
                 Tweak(
+                    name="YTLite",
+                    note="Zarzel",
+                    deb_files=[
+                        GithubReleasesDebFile(
+                            repo=files_repo,
+                            endswith="com.dvntm.ytlite_5.2.1_iphoneos-arm_patch_zarzel.deb",
+                            tag="YTLiteZarzel",
+                            use_version=True,
+                        ),
+                        CydiaRepoDebFile(
+                            repo="https://poomsmart.github.io/repo",
+                            package="com.ps.ytvideooverlay",
+                            architecture="iphoneos-arm64",
+                        ),
+                        CydiaRepoDebFile(
+                            repo="https://poomsmart.github.io/repo",
+                            package="com.ps.youpip",
+                            architecture="iphoneos-arm64",
+                        ),
+                    ],
+                ),
+                Tweak(
                     name="YouMod",
                     deb_files=[
                         GithubReleasesDebFile(
