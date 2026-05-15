@@ -156,7 +156,7 @@ config = Config(
                         ),
                         GithubReleasesDebFile(
                             repo=GithubRepo("hbang/Alderis"),
-                            version="1.2.3",
+                            tag="1.2.3",
                             endswith="arm64.deb",
                         ),
                         CydiaRepoDebFile(

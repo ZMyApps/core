@@ -54,7 +54,6 @@ class Tweak(ConfigBase):
 
 
 class DebFileBase(ConfigBase):
-    version: str = "latest"
     endswith: str | None = None
     use_version: bool = False
 
@@ -64,8 +63,10 @@ class CydiaRepoDebFile(DebFileBase):
     repo: str
     package: str
     architecture: str
+    version: str = "latest"
 
 
 class GithubReleasesDebFile(DebFileBase):
     source: Literal["github_releases"] = "github_releases"
     repo: GithubRepo
+    tag: str = "latest"
