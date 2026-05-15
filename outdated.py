@@ -22,10 +22,11 @@ async def lookup_appstore(client: httpx.AsyncClient, bundle_identifier: str):
 
 
 async def main():
-    print("Fetching decryptedlatest.json")
-    decrypted_latest_repo.fetch()
-    print("Fetching tweakedlatest.json")
-    tweaked_latest_repo.fetch()
+    print("Fetching decryptedlatest.json and tweakedlatest.json")
+    await asyncio.gather(
+        asyncio.to_thread(decrypted_latest_repo.fetch),
+        asyncio.to_thread(tweaked_latest_repo.fetch),
+    )
 
     print(LINE_SEPARATOR)
     print(
