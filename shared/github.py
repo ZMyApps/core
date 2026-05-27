@@ -5,7 +5,7 @@ from functools import cache
 from githubkit import GitHub
 from githubkit.auth import ActionAuthStrategy, TokenAuthStrategy
 
-from shared.config import config
+from shared.config import GithubRepo, config
 
 
 @cache
@@ -30,3 +30,27 @@ def _get_local_github_token() -> str:
             f"gh auth token returned an empty token for {config.local_username!r}"
         )
     return token
+
+
+class GithubRepoInstance:
+    def __init__(self, repo: GithubRepo):
+        self.repo = repo
+
+    def get_release_asset(
+        self,
+        latest: bool = False,
+        tag: str | None = None,
+        endswith: str | None = None,
+    ):
+        release = None
+        if latest:
+            release = create_github_client().rest.repos.get_latest_release(
+                owner=self.repo.owner, repo=self.repo.repo
+            )
+        elif tag:
+            release = create_github_client().rest.repos.get_release_by_tag(
+                owner=self.repo.owner, repo=self.repo.repo, tag=tag
+            )
+        pass
+
+        return
